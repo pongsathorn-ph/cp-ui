@@ -83,6 +83,7 @@ pipeline {
       steps {
         script {
           try {
+            echo "Checkout - Starting."
             cleanWs()
             checkout([$class: 'GitSCM', branches: [[name: "${env.gitBranch}"]], extensions: [], userRemoteConfigs: [[credentialsId: "${env.gitCredentialId}", url: "${env.gitRepoUrl}"]]])
             echo "Checkout - Completed."
@@ -98,12 +99,20 @@ pipeline {
     stage("Replace") {
       steps {
         script {
-          sh "sudo mkdir -p ${env.helmChartDir}/values"
-          replaceChart()
-          replaceValue()
-          replaceDeployment()
-          sh "sudo cp ${env.helmTemplateDir}/service.yaml ${env.helmChartDir}/templates"
-          sh "sudo ls -al ${env.helmChartDir}"
+          try {
+            echo "Replace - Starting."
+            sh "sudo mkdir -p ${env.helmChartDir}/assets"
+            replaceChart()
+            replaceValue()
+            replaceDeployment()
+            sh "sudo cp ${env.helmTemplateDir}/service.yaml ${env.helmChartDir}/templates"
+            sh "sudo ls -al ${env.helmChartDir}"
+            echo "Replace - Completed."
+          } catch(err) {
+            echo "Replace - Failed."
+            currentBuild.result = 'FAILURE'
+            error('Package stage failed.')
+          }
         }
       }
     }
