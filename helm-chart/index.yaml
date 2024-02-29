@@ -3,6 +3,16 @@ entries:
   cp-ui-chart:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-02-29T08:06:25.894151359Z"
+    description: A Helm chart for Kubernetes
+    digest: bfb3750fd0b3f5443178b81815d66123d18b6c60c4932618d9d7f6448f00d483
+    name: cp-ui-chart
+    type: application
+    urls:
+    - assets/cp-ui-chart-2024.02.00-0003-ALPHA.tgz
+    version: 2024.02.00-0003-ALPHA
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-02-29T04:03:17.50497144Z"
     description: A Helm chart for Kubernetes
     digest: 5014497082a24455b7f4a05d3a70e32f59f4a61fa6253e0e1bacf740746508a6
@@ -11,4 +21,4 @@ entries:
     urls:
     - assets/cp-ui-chart-2024.02.00-0002-ALPHA.tgz
     version: 2024.02.00-0002-ALPHA
-generated: "2024-02-29T04:03:17.504798378Z"
+generated: "2024-02-29T08:06:25.893941453Z"
